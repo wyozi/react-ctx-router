@@ -21,7 +21,11 @@ export const ParsedProvider = ({
     }
   }
 
-  return <Context.Provider value={foundRoute}>{children}</Context.Provider>;
+  return (
+    <Context.Provider value={{ foundRoute, routes }}>
+      {children}
+    </Context.Provider>
+  );
 };
 
 export const RawProvider = ({

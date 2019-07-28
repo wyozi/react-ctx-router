@@ -11,8 +11,8 @@ function Wrapper(props: any) {
   );
 }
 function Dummy() {
-  const whatevs = useRoute();
-  return <div matched={whatevs} />;
+  const route = useRoute();
+  return <div matched={route} />;
 }
 
 describe("Context", () => {
