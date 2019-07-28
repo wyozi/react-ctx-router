@@ -1,0 +1,61 @@
+{
+  "name": "react-ctx-router",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "author": "Wyozi",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "lint": "eslint -c .eslintrc 'src/*'",
+    "release": "yarn run clean && yarn build && yarn publish"
+  },
+  "dependencies": {
+    "route-parser": "^0.0.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@typescript-eslint/eslint-plugin": "^1.7.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-jest": "^22.5.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.14.3",
+    "jest": "^24.7.1",
+    "prettier": "^1.17.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.5"
+  },
+  "peerDependencies": {
+    "react": "^16.8"
+  },
+  "jest": {
+    "projects": [
+      "<rootDir>"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/dist/"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/testSetup.ts"
+    ]
+  }
+}
