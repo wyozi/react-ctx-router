@@ -8,6 +8,7 @@ Simple React router for simple SPAs. Uses React Context and Hooks for maximum si
 // setup router
 import { Provider } from "react-ctx-router";
 
+// Routes can use anything from https://github.com/rcs/route-parser#what-can-i-use-in-my-routes
 const routes = [
   { identifier: "main", route: "/" },
   { identifier: "about", route: "/about" },
