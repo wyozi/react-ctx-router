@@ -1,6 +1,6 @@
 ## react-ctx-router
 
-Simple React router for simple SPAs. Uses React Context and Hooks for maximum simplicity
+Simple React router for simple SPAs. Uses React Context and Hooks for maximum simplicity. The location hash is the effective single source of truth: route mutations change the hash and hash changes affect route.
 
 `yarn add react-ctx-router`
 
