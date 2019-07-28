@@ -5,7 +5,7 @@ import { useRoute } from "./matcher";
 
 function Wrapper(props: any) {
   return (
-    <RawProvider hash={props.hash || ""} routes={props.routes || []}>
+    <RawProvider path={props.path || ""} routes={props.routes || []}>
       {props.children}
     </RawProvider>
   );
@@ -55,9 +55,9 @@ describe("Context", () => {
       expect(matchedRoute()).toEqual([null]);
     });
 
-    describe("when hash matches route", () => {
+    describe("when path matches route", () => {
       beforeEach(() => {
-        wrapper.setProps({ hash: "/foo" });
+        wrapper.setProps({ path: "/foo" });
       });
 
       it("passes parsed simple route", () => {
@@ -70,9 +70,9 @@ describe("Context", () => {
     const routes = [{ identifier: "vars-1", route: "/items/:id" }];
     beforeEach(() => wrapper.setProps({ routes }));
 
-    describe("and hash matches route", () => {
+    describe("and path matches route", () => {
       beforeEach(() => {
-        wrapper.setProps({ hash: "/items/123" });
+        wrapper.setProps({ path: "/items/123" });
       });
 
       it("passes parsed simple route", () => {
@@ -85,9 +85,9 @@ describe("Context", () => {
     const routes = [{ identifier: "vars-2", route: "/items/:id/tags/:tag" }];
     beforeEach(() => wrapper.setProps({ routes }));
 
-    describe("and hash matches route", () => {
+    describe("and path matches route", () => {
       beforeEach(() => {
-        wrapper.setProps({ hash: "/items/123/tags/blue" });
+        wrapper.setProps({ path: "/items/123/tags/blue" });
       });
 
       it("passes parsed simple route", () => {
@@ -102,9 +102,9 @@ describe("Context", () => {
     ];
     beforeEach(() => wrapper.setProps({ routes }));
 
-    describe("and hash matches route", () => {
+    describe("and path matches route", () => {
       beforeEach(() => {
-        wrapper.setProps({ hash: "/items/123?search=foo+bar" });
+        wrapper.setProps({ path: "/items/123?search=foo+bar" });
       });
 
       it("passes parsed simple route", () => {
