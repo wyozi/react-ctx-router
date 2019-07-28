@@ -5,7 +5,11 @@ import { useRoute } from "./matcher";
 
 function Wrapper(props: any) {
   return (
-    <RawProvider path={props.path || ""} setPath={jest.fn()} routes={props.routes || []}>
+    <RawProvider
+      path={props.path || ""}
+      setPath={jest.fn()}
+      routes={props.routes || []}
+    >
       {props.children}
     </RawProvider>
   );
