@@ -1,7 +1,8 @@
 {
   "name": "react-ctx-router",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Wyozi",
   "license": "MIT",
   "files": [
@@ -13,7 +14,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "lint": "eslint -c .eslintrc 'src/*'",
-    "release": "yarn run clean && yarn build && yarn publish"
+    "release": "yarn run clean && yarn build && npm publish"
   },
   "dependencies": {
     "route-parser": "^0.0.5"
