@@ -1,18 +1,28 @@
 import * as React from "react";
 import { ParsedRouteMapping, RouteMapping, parseRoutes } from "./routes";
+import { MatchedRoute } from "./matcher";
 
-export const Context = React.createContext<ParsedRouteMapping>();
+interface ContextType {
+  foundRoute: MatchedRoute;
+  routes: ParsedRouteMapping;
+  setPath: (newPath: string) => void;
+}
+export const Context = React.createContext<ContextType>();
+
+interface DeepProps {
+  path: string;
+  setPath: (newPath: string) => void;
+  routes: ParsedRouteMapping;
+  children?: React.ReactNode;
+}
 
 export const ParsedProvider = ({
   path,
+  setPath,
   routes,
   children
-}: {
-  path: string;
-  routes: ParsedRouteMapping;
-  children?: React.ReactNode;
-}) => {
-  let foundRoute = [null];
+}: DeepProps) => {
+  let foundRoute = [null, {}];
   for (const parsedRoute of routes) {
     const result = parsedRoute.route.match(path);
     if (result) {
@@ -22,22 +32,14 @@ export const ParsedProvider = ({
   }
 
   return (
-    <Context.Provider value={{ foundRoute, routes }}>
+    <Context.Provider value={{ foundRoute, routes, setPath }}>
       {children}
     </Context.Provider>
   );
 };
 
-export const RawProvider = ({
-  path,
-  routes,
-  children
-}: {
-  path: string;
-  routes: RouteMapping;
-  children?: React.ReactNode;
-}) => (
-  <ParsedProvider path={path} routes={parseRoutes(routes)}>
+export const RawProvider = ({ path, setPath, routes, children }: DeepProps) => (
+  <ParsedProvider path={path} setPath={setPath} routes={parseRoutes(routes)}>
     {children}
   </ParsedProvider>
 );
@@ -60,7 +62,11 @@ export const FullProvider = ({
   const strippedHash = hash.length > 0 ? hash.substring(1) : "/";
 
   return (
-    <RawProvider path={strippedHash} routes={routes}>
+    <RawProvider
+      path={strippedHash}
+      setPath={path => (window.location.hash = path)}
+      routes={routes}
+    >
       {children}
     </RawProvider>
   );

@@ -5,7 +5,7 @@ Simple React router for simple SPAs. Uses React Context and Hooks for maximum si
 `yarn add react-ctx-router`
 
 ```tsx
-// index.tsx
+// setup router
 import { Provider } from "react-ctx-router";
 
 const routes = [
@@ -21,7 +21,7 @@ const WrappedApp = (
 );
 ```
 ```tsx
-// inside your components
+// access current route
 import { useRoute } from "react-ctx-router";
 
 const Header = () => {
@@ -31,5 +31,20 @@ const Header = () => {
   } else {
     return <i>Please select an item</i>
   }
+};
+```
+```tsx
+// modify route
+import { useRouteMutator } from "react-ctx-router";
+
+const Page = () => {
+  const mutateRoute = useRouteMutator();
+  return (
+    <>
+      <div onClick={() => mutateRoute("item", {id: "1"})}>View item "1"</div>
+      <div onClick={() => mutateRoute("item", {id: "2"})}>View item "2"</div>
+      <div onClick={() => mutateRoute("about")}>About</div>
+    </>
+  );
 };
 ```
