@@ -38,7 +38,7 @@ describe("Context", () => {
     });
 
     it("does not match any route", () => {
-      expect(matchedRoute()).toEqual([null]);
+      expect(matchedRoute()).toEqual([null, {}]);
     });
   });
 
@@ -56,7 +56,7 @@ describe("Context", () => {
     });
 
     it("does not match any route", () => {
-      expect(matchedRoute()).toEqual([null]);
+      expect(matchedRoute()).toEqual([null, {}]);
     });
 
     describe("when path matches route", () => {
