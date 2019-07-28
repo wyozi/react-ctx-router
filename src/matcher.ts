@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { Context } from "./context";
 
-export type MatchedRoute = [null] | [string, object];
+type RouteParams = {[key: string]: string};
+export type MatchedRoute = [null, RouteParams] | [string, RouteParams];
 
 export const useRoute = (): MatchedRoute => {
   return useContext(Context);
